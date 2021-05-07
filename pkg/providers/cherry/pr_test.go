@@ -37,15 +37,36 @@ func TestFindMatchMilestone(t *testing.T) {
 		Number: github.Int(7),
 		Title:  github.String("v4.0.1"),
 	}
+	milestone500rc := &github.Milestone{
+		Number: github.Int(8),
+		Title:  github.String("v5.0.0-rc"),
+	}
+	milestone500alpha := &github.Milestone{
+		Number: github.Int(8),
+		Title:  github.String("v5.0.0-alpha"),
+	}
+	milestone500beta := &github.Milestone{
+		Number: github.Int(8),
+		Title:  github.String("v5.0.0-alpha"),
+	}
+	milestone500ga := &github.Milestone{
+		Number: github.Int(8),
+		Title:  github.String("v5.0.0-ga"),
+	}
 
 	v3milestones := []*github.Milestone{milestone309, milestone30x}
 	v4rcmilestones := []*github.Milestone{milestone400rc1, milestone400rc2, milestone400ga, milestone400}
 	v4gamilestones := []*github.Milestone{milestone400ga, milestone400}
 	v4milestones := []*github.Milestone{milestone400, milestone401}
+	v5milestones := []*github.Milestone{milestone500rc, milestone500alpha, milestone500beta, milestone500ga}
 
 	assert.Equal(t, findMatchMilestones(v3milestones, "3.0"), milestone309, "find latest version")
 	assert.Equal(t, findMatchMilestones(v3milestones, "4.0"), nimMilestone, "find latest version")
 	assert.Equal(t, findMatchMilestones(v4rcmilestones, "4.0"), milestone400rc1, "find latest version")
 	assert.Equal(t, findMatchMilestones(v4gamilestones, "4.0"), milestone400ga, "find latest version")
 	assert.Equal(t, findMatchMilestones(v4milestones, "4.0"), milestone400, "find latest version")
+	assert.Equal(t, findMatchMilestones(v5milestones, "5.0"), milestone500rc, "find latest version")
+	assert.Equal(t, findMatchMilestones(v5milestones[1:], "5.0"), milestone500alpha, "find latest version")
+	assert.Equal(t, findMatchMilestones(v5milestones[2:], "5.0"), milestone500beta, "find latest version")
+	assert.Equal(t, findMatchMilestones(v5milestones[3:], "5.0"), milestone500ga, "find latest version")
 }

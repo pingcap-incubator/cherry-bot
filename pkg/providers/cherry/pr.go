@@ -17,9 +17,11 @@ import (
 const day = 24 * time.Hour
 
 var tag2val = map[string]int{
-	"rc": 1,
-	"ga": 2,
-	"":   10, // no tag means stable
+	"rc":    1,
+	"alpha": 2,
+	"beta":  3,
+	"ga":    4,
+	"":      10, // no tag means stable
 }
 
 func (cherry *cherry) commitLabel(pr *github.PullRequest, label string) error {
