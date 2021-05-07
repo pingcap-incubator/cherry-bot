@@ -30,7 +30,8 @@ func (c *Contributor) processOpenedPR(pull *github.PullRequest) (errs []error) {
 	switch pull.GetAuthorAssociation() {
 	case "FIRST_TIME_CONTRIBUTOR", "FIRST_TIMER", "NONE":
 		{
-			err = c.labelPull(pull, "first-time-contributor")
+			//err = c.labelPull(pull, "first-time-contributor")
+			err = nil
 		}
 	default:
 		{

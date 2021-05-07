@@ -182,7 +182,8 @@ func (p *pullStatus) checkEvent(check *PullStatusControl, event string, lastUpda
 		}
 	case "PingReviewer":
 		{
-			err = errors.Wrap(p.noticePingReviewer(pull, lastUpdate), "check event")
+			//err = errors.Wrap(p.noticePingReviewer(pull, lastUpdate), "check event")
+			err = nil
 		}
 	case "SlackDirect":
 		{
